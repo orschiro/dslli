@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=dslli
+Icon=dslli
+Exec=dslli.wrapper
+Categories=Utility;
