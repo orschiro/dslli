@@ -1,0 +1,35 @@
+app: dslli-indicator
+
+ingredients:
+  dist: trusty
+  sources:
+    - deb http://archive.ubuntu.com/ubuntu/ trusty main universe
+  packages:
+    - python3-minimal
+    - python3-gi
+    - python3-click
+    - python3-gi-cairo
+    - python3-cairo
+    - gir1.2-gtk-3.0
+  script:
+    - wget -c https://github.com/orschiro/dslli/archive/master.zip
+    - unzip master.zip
+
+script:
+  - cat > dslli-indicator.desktop <<EOF
+  - [Desktop Entry]
+  - Type=Application
+  - Name=dslli-indicator
+  - Icon=dslli-indicator
+  - Exec=dslli-indicator
+  - Categories=Utility;
+  - EOF
+  - cp ../dslli-master/* usr/bin/
+  - cp usr/bin/green.png usr/share/icons/hicolor/24x24/dslli-indicator.png
+  - cp usr/bin/green.png usr/share/icons/hicolor/24x24/green.png
+  - cp usr/bin/nocolor.png usr/share/icons/hicolor/24x24/nocolor.png
+  - cp usr/share/icons/hicolor/24x24/dslli-indicator.png .
+  - cp usr/share/icons/hicolor/24x24/green.png .
+  - cp usr/share/icons/hicolor/24x24/nocolor.png .
+  - ( cd usr/bin/ ; ln -s show_state.py dslli-indicator )
+  - chmod a+x usr/bin/show_state.py
